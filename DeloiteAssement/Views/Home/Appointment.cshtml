@@ -57,10 +57,10 @@
             <div class="form-group">
                 <label for="Product">Product<span style="color: red;font-size:20px">*</span></label>
                 <select class="form-control" id="Product" name="Product">
-                    <option value="" disabled selected>Select a product</option>
-                    <option value="product1">Home Insurance Policies</option>
-                    <option value="product2">Motor Insurance Policies</option>
-                    <option value="product3">Health Insurance Policies</option>
+                    <option value="" disabled selected>Select a product</option>s
+                    <option value="Home Insurance">Home Insurance Policies</option>
+                    <option value="Motor Insurance">Motor Insurance Policies</option>
+                    <option value="Health Insurance">Health Insurance Policies</option>
                 </select>
                 <span asp-validation-for="Product" class="text-danger"></span>
             </div>
@@ -73,7 +73,7 @@
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="@Url.Action("Appointment", "Home")" class="btn btn-secondary">Back</a>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Back</a>
             </div>
         </form>
     </div>

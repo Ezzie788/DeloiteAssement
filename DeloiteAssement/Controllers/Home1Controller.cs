@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DeloiteAssement.Models;
+using System.Data.SqlClient;
 
 namespace DeloiteAssement.Controllers
 {
@@ -16,7 +17,32 @@ namespace DeloiteAssement.Controllers
         public async Task<IActionResult> SubmitAppointment(AppointmentFormModel model)
         {
             if (ModelState.IsValid)
+
             {
+
+                string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=myAppointmentDb;Integrated Security=True";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string sql = "INSERT INTO clients (name, surname, phone, email, appointment_date, address, product, comments, created_at) " +
+                                 "VALUES (@Name, @Surname, @MobileNumber, @Email, @DateTime, @Address, @Product, @Comments, @CreatedAt)";
+
+                    using (SqlCommand command = new SqlCommand(sql, connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", model.Name);
+                        command.Parameters.AddWithValue("@Surname", model.Surname);
+                        command.Parameters.AddWithValue("@MobileNumber", model.MobileNumber);
+                        command.Parameters.AddWithValue("@Email", model.Email);
+                        command.Parameters.AddWithValue("@DateTime", model.DateTime);
+                        command.Parameters.AddWithValue("@Address", model.Address);
+                        command.Parameters.AddWithValue("@Product", model.Product);
+                        command.Parameters.AddWithValue("@Comments", model.Comments);
+                        command.Parameters.AddWithValue("@CreatedAt", DateTime.Now);
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+
                 var receiver = model.Email;
                 var subject = "Appointment Confirmation";
                 var message = $"Dear {model.Name},\n\nYour appointment has been scheduled on {model.DateTime} at your registered address {model.Address}.\n Should you require any further assistance or changes, do not hesitate to call us on 99467855 or messaging us through live chat";

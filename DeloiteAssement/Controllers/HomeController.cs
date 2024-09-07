@@ -54,7 +54,7 @@ namespace DeloiteAssement.Controllers
             {
                 try
                 {
-                    // Save appointment to the database
+                    
                     string connectionString = "Data Source=.\\sqlexpress;Initial Catalog=myAppointmentDb;Integrated Security=True";
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
@@ -78,14 +78,14 @@ namespace DeloiteAssement.Controllers
                         }
                     }
 
-                    var receiver = model.Email;  // Get the email from the submitted form
+                    var receiver = model.Email; 
                     var subject = "Appointment Confirmation";
                     var message = $"Dear {model.Name},\n\nYour appointment has been scheduled on {model.DateTime}.";
 
                     await _emailSender.SendEmailAsync(receiver, subject, message);
 
 
-                    // Store success message in TempData (optional)
+                    
                     TempData["SuccessMessage"] = "Appointment scheduled successfully and email sent to " + receiver;
                     return RedirectToAction("Appointment");
                 }
