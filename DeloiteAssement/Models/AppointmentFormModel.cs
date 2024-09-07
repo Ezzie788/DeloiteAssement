@@ -14,12 +14,8 @@ namespace DeloiteAssement.Models
         [StringLength(50, ErrorMessage = "Surname cannot be longer than 50 characters.")]
         public string Surname { get; set; }
 
-        [Required(ErrorMessage = "Mobile Number is required.")]
-        [Phone(ErrorMessage = "Please enter a valid phone number.")]
         public string MobileNumber { get; set; }
 
-        [Required(ErrorMessage = "Email address is required.")]
-        [EmailAddress(ErrorMessage = "Please enter a valid email address.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Date and time of appointment are required.")]
@@ -32,5 +28,11 @@ namespace DeloiteAssement.Models
         public string Product { get; set; }
 
         public string Comments { get; set; }
+
+        public bool IsValid()
+        {
+            // Check if either Email or MobileNumber is provided
+            return !string.IsNullOrEmpty(Email) || !string.IsNullOrEmpty(MobileNumber);
+        }
     }
 }

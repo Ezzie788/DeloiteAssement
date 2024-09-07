@@ -125,12 +125,12 @@ namespace DeloiteAssement.Controllers
                                 id = reader.GetInt32(0),
                                 name = reader.GetString(1),
                                 surname = reader.GetString(2),
-                                phone = reader.GetString(3),
-                                email = reader.GetString(4),
+                                phone = reader.IsDBNull(3) ? null : reader.GetString(3), // Handle possible NULL
+                                email = reader.IsDBNull(4) ? null : reader.GetString(4), // Handle possible NULL
                                 appointment_date = reader.GetDateTime(5),
                                 address = reader.GetString(6),
                                 product = reader.GetString(7),
-                                comments = reader.GetString(8),
+                                comments = reader.IsDBNull(8) ? null : reader.GetString(8), // Handle possible NULL
                                 created_at = reader.GetDateTime(9)
                             };
 

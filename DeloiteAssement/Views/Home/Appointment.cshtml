@@ -5,7 +5,7 @@
 }
 
 <div>
-    <h1 class="display-4 text-center">Book Appointment</h1>
+	<h1 class="display-4 text-center" style="font-size: 40px">Book Appointment</h1>
 
     @if (TempData["SuccessMessage"] != null)
     {
@@ -44,7 +44,7 @@
 
             <div class="form-group">
                 <label asp-for="DateTime">Date and time of appointment<span style="color: red;font-size:20px">*</span></label>
-                <input asp-for="DateTime" class="form-control" name="DateTime" value="@ViewBag.FormattedDateTime" required>
+                <input asp-for="DateTime" class="form-control" name="DateTime" value="@ViewBag.FormattedDateTime" min="@ViewBag.FormattedDateTime" required>
                 <span asp-validation-for="DateTime" class="text-danger"></span>
             </div>
 
@@ -72,9 +72,23 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Back</a>
+                <button type="submit" class="btn btn-primary" style="margin-top: 10px">Submit</button>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-secondary" style="margin-top: 10px">Back</a>
             </div>
         </form>
     </div>
+
 </div>
+
+<script>
+    document.querySelector("form").addEventListener("submit", function (event) {
+        var mobileNumber = document.querySelector("input[name='MobileNumber']").value;
+        var email = document.querySelector("input[name='Email']").value;
+
+        if (!mobileNumber && !email) {
+            event.preventDefault(); // Prevent form submission
+            alert("Either Mobile Number or Email must be provided.");
+        }
+    });
+</script>
+
