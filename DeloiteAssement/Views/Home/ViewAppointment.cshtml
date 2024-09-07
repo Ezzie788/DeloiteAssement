@@ -1,0 +1,49 @@
+﻿@model DeloiteAssement.Models.AppointmentViewModel
+
+@{
+    ViewData["Title"] = "View Appointments";
+}
+
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Appointment Date</th>
+                <th>Address</th>
+                <th>Product</th>
+                <th>Comments</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.listClients != null && Model.listClients.Count > 0)
+            {
+                foreach (var item in Model.listClients)
+                {
+                    <tr>
+                        <td>@item.id</td>
+                        <td>@item.name</td>
+                        <td>@item.surname</td>
+                        <td>@item.phone</td>
+                        <td>@item.email</td>
+                        <td>@item.appointment_date</td>
+                        <td>@item.address</td>
+                        <td>@item.product</td>
+                        <td>@item.comments</td>
+                        <td>@item.created_at</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr><td colspan="10">No clients available</td></tr>
+            }
+        </tbody>
+    </table>
+</div>

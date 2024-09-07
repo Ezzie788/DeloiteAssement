@@ -1,0 +1,80 @@
+﻿@model DeloiteAssement.Models.AppointmentFormModel
+
+@{
+    ViewData["Title"] = "Set Appointment";
+}
+
+<div>
+    <h1 class="display-4 text-center">Book Appointment</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div>
+        <form method="post" action="/Home1/SubmitAppointment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label for="Name">Name<span style="color: red;font-size:20px">*</span></label>
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter your name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Surname">Surname<span style="color: red; font-size:20px">*</span></label>
+                <input type="text" class="form-control" id="Surname" name="Surname" placeholder="Enter your surname">
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="MobileNumber">Mobile Number</label>
+                <input type="tel" class="form-control" id="MobileNumber" name="MobileNumber" placeholder="Enter your mobile number">
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Email">Email Address</label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter your email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="DateTime">Date and time of appointment<span style="color: red;font-size:20px">*</span></label>
+                <input type="datetime-local" class="form-control" id="DateTime" name="DateTime">
+                <span asp-validation-for="DateTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Address">Address<span style="color: red;font-size:20px">*</span></label>
+                <input type="text" class="form-control" id="Address" name="Address" placeholder="Enter your home address">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Product">Product<span style="color: red;font-size:20px">*</span></label>
+                <select class="form-control" id="Product" name="Product">
+                    <option value="" disabled selected>Select a product</option>
+                    <option value="product1">Home Insurance Policies</option>
+                    <option value="product2">Motor Insurance Policies</option>
+                    <option value="product3">Health Insurance Policies</option>
+                </select>
+                <span asp-validation-for="Product" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="Comments">Comments</label>
+                <input type="text" class="form-control" id="Comments" name="Comments" placeholder="Have any additional comments? Type them here">
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="@Url.Action("Appointment", "Home")" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
