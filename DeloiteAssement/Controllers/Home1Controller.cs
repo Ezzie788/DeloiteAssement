@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DeloiteAssement.Models;
 using System.Data.SqlClient;
+using DeloiteAssement.Views.Home;
 
 namespace DeloiteAssement.Controllers
 {
@@ -24,6 +25,22 @@ namespace DeloiteAssement.Controllers
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+
+                    //Checking if email already exists in the database. No duplicate appointments will be allowed
+                    string emailCheckQuery = "SELECT COUNT(1) FROM clients WHERE email = @Email";
+
+                    using(SqlCommand emailCheckCommand = new SqlCommand(emailCheckQuery, connection))
+                    {
+                        emailCheckCommand.Parameters.AddWithValue("@Email", model.Email);
+                        int count = (int)emailCheckCommand.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            ModelState.AddModelError("Email", "An appointment with this email already exists. You may opt to reschedule your appointment.");
+                            return View("~/Views/Home/Appointment.cshtml", model);
+                        }
+                    }
+
                     string sql = "INSERT INTO clients (name, surname, phone, email, appointment_date, address, product, comments, created_at) " +
                                  "VALUES (@Name, @Surname, @MobileNumber, @Email, @DateTime, @Address, @Product, @Comments, @CreatedAt)";
 
