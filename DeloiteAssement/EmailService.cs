@@ -7,8 +7,7 @@ namespace DeloiteAssement
     {
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            var mail = "ezekiel79@outlook.com";
-            var pw = "Jasbug7888";
+            
 
             var client = new SmtpClient("smtp-mail.outlook.com", 587);
             client.EnableSsl = true;
