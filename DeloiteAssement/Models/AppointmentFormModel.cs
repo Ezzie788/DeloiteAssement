@@ -7,6 +7,7 @@ namespace DeloiteAssement.Models
     {
         [Required(ErrorMessage = "Name is required.")]
         [StringLength(50, ErrorMessage = "Name cannot be longer than 50 characters.")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "The Name field should contain only alphabetic characters.")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Surname is required.")]

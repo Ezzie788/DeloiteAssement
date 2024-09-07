@@ -19,44 +19,44 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label for="Name">Name<span style="color: red;font-size:20px">*</span></label>
-                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter your name">
+                <label asp-for="Name">Name<span style="color: red;font-size:20px">*</span></label>
+                <input asp-for="Name" class="form-control" pattern="[A-Za-z]+" title="Only alphabetic characters are allowed." required>
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label for="Surname">Surname<span style="color: red; font-size:20px">*</span></label>
-                <input type="text" class="form-control" id="Surname" name="Surname" placeholder="Enter your surname">
+                <label asp-for="Surname">Surname<span style="color: red; font-size:20px">*</span></label>
+                <input asp-for="Surname" class="form-control" pattern="[A-Za-z]+" title="Only alphabetic characters are allowed." required>
                 <span asp-validation-for="Surname" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label for="MobileNumber">Mobile Number</label>
-                <input type="tel" class="form-control" id="MobileNumber" name="MobileNumber" placeholder="Enter your mobile number">
+                <label asp-for="MobileNumber">Mobile Number</label>
+                <input asp-for="MobileNumber" class="form-control" pattern="^[0-9]+$" title="Only numeric characters are allowed">
                 <span asp-validation-for="MobileNumber" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label for="Email">Email Address</label>
-                <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter your email">
+                <label asp-for="Email">Email Address</label>
+                <input asp-for="Email" class="form-control">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label for="DateTime">Date and time of appointment<span style="color: red;font-size:20px">*</span></label>
-                <input type="datetime-local" class="form-control" id="DateTime" name="DateTime">
+                <label asp-for="DateTime">Date and time of appointment<span style="color: red;font-size:20px">*</span></label>
+                <input asp-for="DateTime" class="form-control" name="DateTime" value="@ViewBag.FormattedDateTime" required>
                 <span asp-validation-for="DateTime" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label for="Address">Address<span style="color: red;font-size:20px">*</span></label>
-                <input type="text" class="form-control" id="Address" name="Address" placeholder="Enter your home address">
+                <label asp-for="Address">Address<span style="color: red;font-size:20px">*</span></label>
+                <input asp-for="Address" class="form-control" required>
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <label for="Product">Product<span style="color: red;font-size:20px">*</span></label>
-                <select class="form-control" id="Product" name="Product">
+                <label asp-for="Product">Product<span style="color: red;font-size:20px">*</span></label>
+                <select asp-for="Product" class="form-control" required>
                     <option value="" disabled selected>Select a product</option>
                     <option value="Home Insurance">Home Insurance Policies</option>
                     <option value="Motor Insurance">Motor Insurance Policies</option>
@@ -66,8 +66,8 @@
             </div>
 
             <div class="form-group">
-                <label for="Comments">Comments</label>
-                <input type="text" class="form-control" id="Comments" name="Comments" placeholder="Have any additional comments? Type them here">
+                <label asp-for="Comments">Comments</label>
+                <input asp-for="Comments" class="form-control">
                 <span asp-validation-for="Comments" class="text-danger"></span>
             </div>
 

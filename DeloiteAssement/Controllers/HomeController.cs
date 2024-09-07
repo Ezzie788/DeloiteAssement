@@ -43,8 +43,14 @@ namespace DeloiteAssement.Controllers
 
         public IActionResult Appointment()
         {
-            var model = new AppointmentFormModel();
-            return View(model);
+            var model = new AppointmentFormModel
+            {
+                DateTime = DateTime.Now
+            };
+
+            ViewBag.FormattedDateTime = DateTime.Now.ToString("yyyy-MM-ddTHH:mm");
+
+            return View("~/Views/Home/Appointment.cshtml", model);
         }
 
         [HttpPost]

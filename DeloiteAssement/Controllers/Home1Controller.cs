@@ -59,10 +59,10 @@ namespace DeloiteAssement.Controllers
                         command.ExecuteNonQuery();
                     }
                 }
-
+                
                 var receiver = model.Email;
                 var subject = "Appointment Confirmation";
-                var message = $"Dear {model.Name},\n\nYour appointment has been scheduled on {model.DateTime} at your registered address {model.Address}.\n Should you require any further assistance or changes, do not hesitate to call us on 99467855 or messaging us through live chat";
+                var message = $"Dear {model.Name},\n\nYour appointment has been scheduled on {model.DateTime} at your registered address {model.Address}.\n\n\nShould you require any further assistance or changes, do not hesitate to call us on 99467855 or messaging us through live chat";
 
                 await _emailSender.SendEmailAsync(receiver, subject, message);
 
